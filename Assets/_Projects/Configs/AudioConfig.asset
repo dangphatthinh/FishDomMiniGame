@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26c2be1189c34400bb52ab931b9f8ea2, type: 3}
+  m_Name: AudioConfig
+  m_EditorClassIdentifier: 
+  _audioClipData:
+  - AudioClip: {fileID: 8300000, guid: 95569f9c2347f4f33b9e3f4e542bfaeb, type: 3}
+    AudioId: bg_gameplay
+  - AudioClip: {fileID: 8300000, guid: ec94184d765c24688b9dad0ab5c1b94b, type: 3}
+    AudioId: touch_bubble
+  - AudioClip: {fileID: 8300000, guid: 040c47803d2154347bf9e5c909e70912, type: 3}
+    AudioId: pop_bubble
+  - AudioClip: {fileID: 8300000, guid: 16fd4b7dd5acd45bd9abae3cb0b10821, type: 3}
+    AudioId: drop_bubble
+  - AudioClip: {fileID: 8300000, guid: 2855668c56b414f869be2de68f525c9e, type: 3}
+    AudioId: pop_gem
+  - AudioClip: {fileID: 8300000, guid: ceda29e30ff6343b89b78af7ecbf21b7, type: 3}
+    AudioId: pop_log
+  - AudioClip: {fileID: 8300000, guid: 38acf8eef0e884f228705b8732f1be34, type: 3}
+    AudioId: use_booster_bomb
+  - AudioClip: {fileID: 8300000, guid: e8be05d81711648caa746c1e1810c63b, type: 3}
+    AudioId: use_booster_rainbow
+  - AudioClip: {fileID: 8300000, guid: 6d34e5f5769b849739e0fb436d1ac457, type: 3}
+    AudioId: use_booster_lightning
+  - AudioClip: {fileID: 8300000, guid: 7e139f30093a54fb9ae37030e0ca09f6, type: 3}
+    AudioId: use_booster_rocket
+  - AudioClip: {fileID: 8300000, guid: d5405201e6fd146fe861e90519366bc9, type: 3}
+    AudioId: popup_level_win
+  - AudioClip: {fileID: 8300000, guid: 7973341dfef0e4ea498755ae43138a70, type: 3}
+    AudioId: popup_level_lose
+  - AudioClip: {fileID: 8300000, guid: 7b7f996f2351f479988ba016b7fced37, type: 3}
+    AudioId: popup_level_retry
+  - AudioClip: {fileID: 8300000, guid: 59c3d3c1ba6f6493cb49a4d7584d9833, type: 3}
+    AudioId: pop_colorbomb
+  - AudioClip: {fileID: 8300000, guid: 87d69cf8044504d94ba160c836255e5e, type: 3}
+    AudioId: pop_potionbomb

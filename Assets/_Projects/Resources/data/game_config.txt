@@ -1,0 +1,10 @@
+{
+    "game_speed": 1.0,
+    "max_rows_for_view": 10,
+    "length_of_row": 0.84,
+    "length_of_column": 0.99,
+    "drop_time": 0.8,
+    "merge_time": 0.4,
+    "delay_per_row_at_merge": 0.05,
+    "max_time_move_board_at_startup": 1.0
+}

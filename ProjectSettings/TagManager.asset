@@ -1,0 +1,84 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - Boundary
+  - Bubble
+  - b_explosion_1
+  - b_explosion_2
+  - b_explosion_3
+  - b_explosion_4
+  - b_explosion_5
+  - b_explosion_6
+  - b_explosion_7
+  - b_explosion_8
+  - ray_impact_1
+  - ray_impact_2
+  - ray_impact_3
+  - ray_impact_4
+  - ray_impact_5
+  - ray_impact_6
+  - ray_impact_7
+  - ray_impact_8
+  - b_trail_1
+  - b_trail_2
+  - b_trail_3
+  - b_trail_4
+  - b_trail_5
+  - b_trail_6
+  - b_trail_7
+  - b_trail_8
+  - rainbow_explosion
+  - rainbow_shooting_ray_impact
+  - rainbow_trail
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - Bubble
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: Background
+    uniqueID: 3659055423
+    locked: 0
+  - name: Bubble
+    uniqueID: 1561670037
+    locked: 0
+  - name: Element
+    uniqueID: 3403177403
+    locked: 0
+  - name: Effect
+    uniqueID: 1177579685
+    locked: 0

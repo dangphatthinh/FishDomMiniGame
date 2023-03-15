@@ -1,0 +1,203 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 429499eb6ba7641a6bae6475d25477fe, type: 3}
+  m_Name: ObjectPoolConfig
+  m_EditorClassIdentifier: 
+  _itemsToPool:
+  - name: pop_gem
+    objectToPool: {fileID: 2777197225936759001, guid: a48f753f035a14428a6879e320245903, type: 3}
+    amountToPool: 0
+    shouldExpand: 1
+  - name: pop_3
+    objectToPool: {fileID: 453566387536713865, guid: d9f1b34eb25bb409e86aa07ac9fb632e, type: 3}
+    amountToPool: 0
+    shouldExpand: 1
+  - name: pop_4
+    objectToPool: {fileID: 5337266812528949294, guid: 9c7d79588d42d40d7bafd911cfa4873c, type: 3}
+    amountToPool: 0
+    shouldExpand: 1
+  - name: pop_5
+    objectToPool: {fileID: 6056385173421514258, guid: 8344c9f705edb41829e1f6d898fa7264, type: 3}
+    amountToPool: 0
+    shouldExpand: 1
+  - name: pop_6
+    objectToPool: {fileID: 4671871462717080679, guid: 4dba38a3c94964fc4b4992d6b1c81cfc, type: 3}
+    amountToPool: 0
+    shouldExpand: 1
+  - name: pop_7
+    objectToPool: {fileID: 8915991994933236283, guid: 2acde272f608047089b3a0c499214028, type: 3}
+    amountToPool: 0
+    shouldExpand: 1
+  - name: pop_8
+    objectToPool: {fileID: 807665362198259760, guid: c13025312b4c74ebfb020c19525c9a07, type: 3}
+    amountToPool: 0
+    shouldExpand: 1
+  - name: pop_1
+    objectToPool: {fileID: 3246256543628216685, guid: 0965f218be1f24136bbb7752983c0b89, type: 3}
+    amountToPool: 0
+    shouldExpand: 1
+  - name: pop_2
+    objectToPool: {fileID: 6795389929952894888, guid: 077a1783ab34a4b21a61c421e5e95c14, type: 3}
+    amountToPool: 0
+    shouldExpand: 1
+  - name: trail_3
+    objectToPool: {fileID: 7471421548405388864, guid: e55faa25016774bf6982e0bdaf72ef19, type: 3}
+    amountToPool: 1
+    shouldExpand: 1
+  - name: trail_4
+    objectToPool: {fileID: 1000922884069122106, guid: 30efc735d40384c00b3374da9447bdbb, type: 3}
+    amountToPool: 1
+    shouldExpand: 1
+  - name: trail_5
+    objectToPool: {fileID: 8169796820888201567, guid: 8ba282e27e0fd487ea268e7cfc83dbcf, type: 3}
+    amountToPool: 1
+    shouldExpand: 1
+  - name: trail_6
+    objectToPool: {fileID: 8360352289015246790, guid: 069f47c150b4d4fd7a5dbbbb2ab1e483, type: 3}
+    amountToPool: 1
+    shouldExpand: 1
+  - name: trail_7
+    objectToPool: {fileID: 6013245087014728787, guid: 3c17b3a2622c24544bb3c9d336399924, type: 3}
+    amountToPool: 1
+    shouldExpand: 1
+  - name: trail_8
+    objectToPool: {fileID: 5033098920752479517, guid: d14578d5fd0674cfe831e2bcc18d03b9, type: 3}
+    amountToPool: 1
+    shouldExpand: 1
+  - name: trail_0
+    objectToPool: {fileID: 5866609182055261513, guid: 02cce8811865e4902bff6ad4ecfdd1f7, type: 3}
+    amountToPool: 1
+    shouldExpand: 1
+  - name: trail_1
+    objectToPool: {fileID: 6077333381368297594, guid: e9fccb55787234f47bf07311e2992b1f, type: 3}
+    amountToPool: 1
+    shouldExpand: 1
+  - name: trail_2
+    objectToPool: {fileID: 8724948041466777633, guid: 692ff5505d75c4a91a23a2fef070cfad, type: 3}
+    amountToPool: 1
+    shouldExpand: 1
+  - name: impact_3
+    objectToPool: {fileID: 7133106444572467457, guid: dbd4a7d0891e74bd6a351dd3e710b70d, type: 3}
+    amountToPool: 4
+    shouldExpand: 1
+  - name: impact_4
+    objectToPool: {fileID: 579336481161829340, guid: e648563f2a4924cc0857c6bc1c866bcc, type: 3}
+    amountToPool: 4
+    shouldExpand: 1
+  - name: impact_5
+    objectToPool: {fileID: 9145156007476809251, guid: 5b35d6dd87ffc48dc8f3d92794d3f753, type: 3}
+    amountToPool: 4
+    shouldExpand: 1
+  - name: impact_6
+    objectToPool: {fileID: 4597255894819607560, guid: ccad52af8690349ae8358287c365240a, type: 3}
+    amountToPool: 4
+    shouldExpand: 1
+  - name: impact_7
+    objectToPool: {fileID: 6086777681314979594, guid: 5337ce77346634b768c15b7cd222e2ea, type: 3}
+    amountToPool: 4
+    shouldExpand: 1
+  - name: impact_8
+    objectToPool: {fileID: 5419319522780378997, guid: bc90558662f944f85a3a29c3be288ef5, type: 3}
+    amountToPool: 4
+    shouldExpand: 1
+  - name: impact_0
+    objectToPool: {fileID: 8039157672818847916, guid: 43db303e8d42a4e95b89c127e1a8d817, type: 3}
+    amountToPool: 4
+    shouldExpand: 1
+  - name: impact_1
+    objectToPool: {fileID: 4702005458869471501, guid: 68546a15effb8494fb845b0c03ecc426, type: 3}
+    amountToPool: 4
+    shouldExpand: 1
+  - name: impact_2
+    objectToPool: {fileID: 3476577891515351493, guid: 46a0a2d4b5d064c299839555da2a218d, type: 3}
+    amountToPool: 4
+    shouldExpand: 1
+  - name: potion_explosion
+    objectToPool: {fileID: 9118509113532206949, guid: 52a6f1c5873774b9c8df88ddfecb8897, type: 3}
+    amountToPool: 0
+    shouldExpand: 1
+  - name: lightning_explosion
+    objectToPool: {fileID: 91973154249991859, guid: b6a23b3e46637473d82103a28e49a50e, type: 3}
+    amountToPool: 0
+    shouldExpand: 1
+  - name: stone_explosion
+    objectToPool: {fileID: 7538261044561864433, guid: 52bb4d442cf7f472f9b355151c9d39e3, type: 3}
+    amountToPool: 0
+    shouldExpand: 1
+  - name: log_explosion
+    objectToPool: {fileID: 3712424730230636260, guid: 6c1434fd649e0469b9dfe6fd79cbc3ad, type: 3}
+    amountToPool: 0
+    shouldExpand: 1
+  - name: booster_bomb_explosion
+    objectToPool: {fileID: 935081772511449057, guid: 62308604653244375a35d1d727d00b71, type: 3}
+    amountToPool: 0
+    shouldExpand: 1
+  - name: booster_rainbow_explosion
+    objectToPool: {fileID: 4457102612726483398, guid: 9a291d0de11084f94a4cd6f6c8a7ba95, type: 3}
+    amountToPool: 0
+    shouldExpand: 1
+  - name: bombcolor_explosion
+    objectToPool: {fileID: 6939744314489398160, guid: 01a5971f59d4b4ad3949b3df07807c69, type: 3}
+    amountToPool: 0
+    shouldExpand: 1
+  - name: changecolor_1
+    objectToPool: {fileID: 2236285165357464997, guid: 675446da7908040ff86e55d978a9f5ff, type: 3}
+    amountToPool: 0
+    shouldExpand: 1
+  - name: changecolor_2
+    objectToPool: {fileID: 6964783012312479667, guid: 96f2e73e00c4c4f76ba2980f54521607, type: 3}
+    amountToPool: 0
+    shouldExpand: 1
+  - name: changecolor_3
+    objectToPool: {fileID: 972560651868181625, guid: 43cab68e40ecf41cca86e622c595e6ce, type: 3}
+    amountToPool: 0
+    shouldExpand: 1
+  - name: changecolor_4
+    objectToPool: {fileID: 4367137460573108522, guid: 51570fd21d42e422cb0026fd5b114436, type: 3}
+    amountToPool: 0
+    shouldExpand: 1
+  - name: changecolor_5
+    objectToPool: {fileID: 5717621555050553003, guid: 3a852f8b83b384685bb7129e1c351ca9, type: 3}
+    amountToPool: 0
+    shouldExpand: 1
+  - name: changecolor_6
+    objectToPool: {fileID: 798468703523383189, guid: 3b1931ec110d94021b8f4dac1c3b08cd, type: 3}
+    amountToPool: 0
+    shouldExpand: 1
+  - name: changecolor_7
+    objectToPool: {fileID: 1891201265217775275, guid: 289d9e258f9cb42b89bf04b02af9c87a, type: 3}
+    amountToPool: 0
+    shouldExpand: 1
+  - name: changecolor_8
+    objectToPool: {fileID: 6906535771050518839, guid: 2ecba5546984a4b9698da91cb52e30d4, type: 3}
+    amountToPool: 0
+    shouldExpand: 1
+  - name: whitebubble_explosion
+    objectToPool: {fileID: 3712424730230636260, guid: 6c1434fd649e0469b9dfe6fd79cbc3ad, type: 3}
+    amountToPool: 0
+    shouldExpand: 1
+  - name: vine_explosion
+    objectToPool: {fileID: 3066182754636550582, guid: cf5d5a2ce9bb34da68f066240d4cf763, type: 3}
+    amountToPool: 0
+    shouldExpand: 1
+  - name: leaves_explosion
+    objectToPool: {fileID: 5262573858739691323, guid: 9c0cbee370f234faa94fffa4e87ddb89, type: 3}
+    amountToPool: 0
+    shouldExpand: 1
+  - name: arrow_explosion
+    objectToPool: {fileID: 6426027054526562281, guid: cc6f2258b6b764cbeb07cef74e25985a, type: 3}
+    amountToPool: 0
+    shouldExpand: 1
+  - name: cobweb_explosion
+    objectToPool: {fileID: 3714518525626203314, guid: f55902f3b8b3e4d06b4747c761f81b46, type: 3}
+    amountToPool: 0
+    shouldExpand: 1
