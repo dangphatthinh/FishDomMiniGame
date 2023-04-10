@@ -8,16 +8,19 @@ namespace Athena.MiniGame.Fishdom2.Data
     public class LevelData 
     {
         public readonly int totalTile;
+        public readonly int firstIndex;
         public readonly IList<GameObjectTile> tile;
         public readonly IList<CameraPosition> cameraPos;
 
         public int TotalTile => totalTile;
+        public int FirstIndex => firstIndex;
         public IList<GameObjectTile> Tile => tile;
         public IList<CameraPosition> CameraPos => cameraPos;
 
         public LevelData(object jsonObj)
         {
             totalTile = jsonObj.parseJsonInt("totalTile");
+            firstIndex = jsonObj.parseJsonInt("firstIndex");
             tile = jsonObj.parseJsonObjList("ObjectTile", t => convertObj(t));
             cameraPos = jsonObj.parseJsonObjList("cameraPos", t => convertCamPos(t));
         }
@@ -31,6 +34,8 @@ namespace Athena.MiniGame.Fishdom2.Data
             return new CameraPosition(jsonObj);
         }
     }
+
+    [System.Serializable]
     public class GameObjectTile : MonoBehaviour
     {
         public readonly float xPos;

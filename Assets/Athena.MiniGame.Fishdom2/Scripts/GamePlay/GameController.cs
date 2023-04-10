@@ -95,7 +95,7 @@ namespace Athena.MiniGame.Fishdom2.GamePlay
         }
         public void SetUpCurrent()
         {
-            _currentIndex = 2; // Change data to fix this
+            _currentIndex = _level.FirstIndex;
             _currentState = 1; //First game state
         }
         public int CurrentState

@@ -1,5 +1,6 @@
 {
  "totalTile" : 16,
+ "firstIndex" : 2,
  "cameraPos" : [
  {
   "x" : 0
