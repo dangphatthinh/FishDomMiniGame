@@ -1,0 +1,83 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using Athena.MiniGame.Fishdom2.InputManagers;
+using Athena.MiniGame.Fishdom2.Data;
+
+namespace Athena.MiniGame.Fishdom2.GamePlay
+{
+    public class GameController : MonoBehaviour
+    {
+        [SerializeField] private GameView _gameView;
+        [SerializeField] private InputManager _input;
+        private LevelData _level;
+
+        private int _currentState;
+        private int _currentIndex;
+
+        public void Initialize()
+        {
+            _level = G.DataService.GetLevelData();
+            SetUpCurrent();
+            _gameView.Initialize(_level);
+        }
+
+        public void Update()
+        {
+            _input.Execute();
+        }
+
+        public void ProcessingInput(int clickedIndex)
+        {
+            bool isLock = _gameView.childObjects[clickedIndex].GetComponent<TileStatus>().IsLock;
+            int newValue = _level.tile[clickedIndex].Value;
+            int currentValue = _level.tile[CurrentIndex].Value;
+
+            if (clickedIndex < 0 || clickedIndex == CurrentIndex || isLock)
+            {
+                return;
+            }
+            if(currentValue <= newValue)
+            {
+                Debug.Log("GameOver");
+            }
+            else
+            {
+                UpdateData(clickedIndex,currentValue);
+            }
+        }
+        public void UpdateData(int clickedIndex, int currentValue)
+        {
+            string calculation = _level.tile[clickedIndex].calculation;
+            switch(calculation)
+            {
+                case "+":
+                    _level.tile[clickedIndex].Value += currentValue;
+                    _level.tile[CurrentIndex].Value = 0;
+                    break;
+                case "x":
+
+                    break;
+                default:
+                    break;
+            }
+        }
+        public void SetUpCurrent()
+        {
+            _currentIndex = 2; // Change data to fix this
+            _currentState = 1; //First game state
+        }
+        public int CurrentState
+        {
+            get => _currentState;
+            set => _currentState = value;
+        }
+
+        public int CurrentIndex
+        {
+            get => _currentIndex;
+            set => _currentIndex = value;
+        }
+    }
+
+}
