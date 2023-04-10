@@ -5,13 +5,19 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/_Projects/Scenes/bootstrap.unity
     guid: cbafd740290bf4866a602c77eabe722a
-  - enabled: 1
+  - enabled: 0
     path: Assets/_Projects/Scenes/game.unity
     guid: b53e8de0a0baa4701acadacfc6ef166d
-  - enabled: 1
+  - enabled: 0
     path: Assets/_Projects/Scenes/GameplayECS.unity
     guid: b01e7c0c3ea514c8ba814061f497455e
+  - enabled: 1
+    path: Assets/Athena.MiniGame.Fishdom2/Scenes/gameplay.unity
+    guid: 53270a5223b342341b3e1aaac68d9e2f
+  - enabled: 1
+    path: Assets/Athena.MiniGame.Fishdom2/Scenes/bootstrap.unity
+    guid: 0d09bcd5623447c408af4106992398d1
   m_configObjects: {}
