@@ -16,6 +16,7 @@ namespace Athena.MiniGame.Fishdom2.GamePlay
 
         private int _currentState;
         private int _currentIndex;
+        private int _previousIndex;
 
         public void Initialize()
         {
@@ -61,23 +62,25 @@ namespace Athena.MiniGame.Fishdom2.GamePlay
 
         public void UpdateData(int clickedIndex, int currentValue)
         {
-            string calculation = _level.tile[clickedIndex].calculation;
-            switch(calculation)
+            PreviousIndex = CurrentIndex;
+            CurrentIndex = clickedIndex;
+            string calculation = _level.tile[CurrentIndex].calculation;
+            switch (calculation)
             {
                 case "+":
-                    _level.tile[clickedIndex].Value += currentValue;
-                    _level.tile[CurrentIndex].Value = 0;
+                    _level.tile[CurrentIndex].Value += currentValue;
+                    _level.tile[PreviousIndex].Value = 0;
                     break;
                 case "x":
-                    _level.tile[clickedIndex].Value *= currentValue;
-                    _level.tile[CurrentIndex].Value = 0;
+                    _level.tile[CurrentIndex].Value *= currentValue;
+                    _level.tile[PreviousIndex].Value = 0;
                     break;
                 default:
                     break;
             }
-            _gameView.UpdateView(clickedIndex, _level.tile[clickedIndex].Value);
-            _gameView.childObjects[CurrentIndex].GetComponent<TileStatus>().IsLock = true;
-            CurrentIndex = clickedIndex;
+            int newValue = _level.tile[CurrentIndex].Value;
+
+            StartCoroutine(_gameView.StartUpdateView(CurrentIndex, currentValue, newValue));
         }
         public bool IsGameStateChange(int clickedIndex)
         {
@@ -89,15 +92,18 @@ namespace Athena.MiniGame.Fishdom2.GamePlay
             }
             return false;
         }
+
         public bool IsWin()
         {
             return CurrentIndex == _level.TotalTile - 1;
         }
+
         public void SetUpCurrent()
         {
             _currentIndex = _level.FirstIndex;
             _currentState = 1; //First game state
         }
+
         public int CurrentState
         {
             get => _currentState;
@@ -108,6 +114,11 @@ namespace Athena.MiniGame.Fishdom2.GamePlay
         {
             get => _currentIndex;
             set => _currentIndex = value;
+        }
+        public int PreviousIndex
+        {
+            get => _previousIndex;
+            set => _previousIndex = value;
         }
     }
 
