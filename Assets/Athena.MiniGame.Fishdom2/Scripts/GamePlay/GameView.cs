@@ -22,14 +22,14 @@ namespace Athena.MiniGame.Fishdom2.GamePlay
 
         public void Initialize(LevelData data) 
         {
-            CreatTileObject(data);
-            CreatTextObject(data);
+            CreatTileMap(data);
+            CreatNumberObject(data);
             _gameController.UpdateCamera();
             UpdateTileState(data);
             UpdateMainCharacter(_gameController.CurrentIndex);
         }
 
-        public void CreatTileObject(LevelData data)
+        public void CreatTileMap(LevelData data)
         {
             GameObject[] prefabs = Resources.LoadAll<GameObject>("Fishdom2/Prefabs/Tile");
             for (int i = 0; i < data.totalTile; i++)
@@ -44,18 +44,18 @@ namespace Athena.MiniGame.Fishdom2.GamePlay
             }
         }
 
-        public void CreatTextObject(LevelData data)
+        public void CreatNumberObject(LevelData data)
         {
-            GameObject[] textPrefab = Resources.LoadAll<GameObject>("Fishdom2/Prefabs/TextObject");
+            GameObject[] numberPrefab = Resources.LoadAll<GameObject>("Fishdom2/Prefabs/TextObject");
             for (int i = 0; i < data.totalTile; i++)
             {
-                GameObject textInstance = Instantiate(textPrefab[data.Tile[i].TileType - 1], _textHolder);
+                GameObject numberInstance = Instantiate(numberPrefab[data.Tile[i].TileType - 1], _textHolder);
                 Vector3 pos = new Vector3(data.Tile[i].XPos, data.Tile[i].YPos, 0);
-                textInstance.transform.position = pos;
-                Text newText = textInstance.transform.GetChild(0).GetComponent<Text>();
-                textInstance.GetComponent<RectTransform>().localScale = Vector3.one*3;
+                numberInstance.transform.position = pos;
+                Text newText = numberInstance.transform.GetChild(0).GetComponent<Text>();
+                numberInstance.GetComponent<RectTransform>().localScale = Vector3.one*3;
                 newText.text = (data.Tile[i].calculation == "+"?null: data.Tile[i].calculation.ToString()) + data.Tile[i].value.ToString();
-                textObjects.Add(textInstance);
+                textObjects.Add(numberInstance);
             }
         }
 
