@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Athena.MiniGame.Fishdom2.Data;
 using DG.Tweening;
+using Athena.MiniGame.Fishdom2.GamePlay;
 
 namespace Athena.MiniGame.Fishdom2.CameraManager
 {
@@ -10,6 +11,7 @@ namespace Athena.MiniGame.Fishdom2.CameraManager
     {
         private Camera _camCtrl;
         private float transitionDuration = 1.5f;
+        private ITileStateListener _tileStateListener;
 
         private void Awake()
         {
@@ -29,6 +31,12 @@ namespace Athena.MiniGame.Fishdom2.CameraManager
             _camCtrl.DOOrthoSize(size, transitionDuration).SetEase(Ease.OutQuad);
             yield return new WaitForSeconds(0.5f);
             transform.DOMove(target, transitionDuration).SetEase(Ease.OutQuad);
+            yield return new WaitForSeconds(1.2f);
+            if (_tileStateListener != null) _tileStateListener.OnTileStateChange();
+        }
+        public void SetTileStateListener(ITileStateListener listener)
+        {
+            _tileStateListener = listener;
         }
     }
 

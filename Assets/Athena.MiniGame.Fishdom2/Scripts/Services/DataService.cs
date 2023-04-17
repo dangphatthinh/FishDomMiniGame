@@ -22,7 +22,7 @@ namespace Athena.MiniGame.Fishdom2.Services
 
         private IEnumerator init()
         {
-            var dataPath = "levelmap";
+            var dataPath = "Fishdom2/data/levelmap";
             var jsonFile = Resources.LoadAsync<TextAsset>(dataPath);
             yield return jsonFile;
             var jsonObj = GenericsJSONParser.JsonDecode(((TextAsset)jsonFile.asset).text);

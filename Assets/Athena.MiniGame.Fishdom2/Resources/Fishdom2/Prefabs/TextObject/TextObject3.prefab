@@ -9,8 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1905041469980012236}
-  m_Layer: 5
-  m_Name: TextObject1
+  m_Layer: 7
+  m_Name: TextObject3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -48,7 +48,7 @@ GameObject:
   - component: {fileID: 5167198248528809943}
   - component: {fileID: 3454716599649837241}
   - component: {fileID: 3204342584794122669}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -102,7 +102,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 544549cf224c6495c9335a7dce0df336, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1f84f56426d5a4d1290d161609150523, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -123,7 +123,7 @@ GameObject:
   - component: {fileID: 5671926240205157559}
   - component: {fileID: 4411361670208219652}
   - component: {fileID: 1577763769068763711}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: TextTest
   m_TagString: Untagged
   m_Icon: {fileID: 0}

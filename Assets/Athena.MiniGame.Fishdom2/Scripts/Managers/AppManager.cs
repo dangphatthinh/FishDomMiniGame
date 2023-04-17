@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Athena.MiniGame.Fishdom2.UIController;
 using Athena.MiniGame.Fishdom2.AppFlow;
+using Athena.Common.UI;
 
 namespace Athena.MiniGame.Fishdom2.Managers
 {
@@ -47,12 +48,17 @@ namespace Athena.MiniGame.Fishdom2.Managers
         }
         public void ShowLoadingUI()
         {
-            GameObject loadAsset = Resources.Load<GameObject>("UIPrefabs/LoadingUI");
+            /*GameObject loadAsset = Resources.Load<GameObject>("Fishdom2/UIPrefabs/Loading/LoadingUI");
             GameObject instance = Instantiate(loadAsset);
             instance.transform.SetParent(_parent);
             instance.GetComponent<RectTransform>().localScale = Vector3.one;
-            _loadingUI = instance.GetComponent<LoadingUI>();
+            _loadingUI = instance.GetComponent<LoadingUI>();*/
+            _loadingUI = UIManager.Instance.ShowUIOnTop<LoadingUI>(C.Layer.Loading);
             _loadingUI.SetUp();
+        }
+        public void HideLoadingUI()
+        {
+            UIManager.Instance.ReleaseUI(_loadingUI, true);
         }
     }
 }

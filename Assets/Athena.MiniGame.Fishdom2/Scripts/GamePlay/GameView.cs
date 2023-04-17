@@ -31,7 +31,7 @@ namespace Athena.MiniGame.Fishdom2.GamePlay
 
         public void CreatTileObject(LevelData data)
         {
-            GameObject[] prefabs = Resources.LoadAll<GameObject>("Prefabs/Tile");
+            GameObject[] prefabs = Resources.LoadAll<GameObject>("Fishdom2/Prefabs/Tile");
             for (int i = 0; i < data.totalTile; i++)
             {
                 GameObject instance = Instantiate(prefabs[data.Tile[i].TileType - 1], _objectHolder);
@@ -46,7 +46,7 @@ namespace Athena.MiniGame.Fishdom2.GamePlay
 
         public void CreatTextObject(LevelData data)
         {
-            GameObject[] textPrefab = Resources.LoadAll<GameObject>("Prefabs/TextObject");
+            GameObject[] textPrefab = Resources.LoadAll<GameObject>("Fishdom2/Prefabs/TextObject");
             for (int i = 0; i < data.totalTile; i++)
             {
                 GameObject textInstance = Instantiate(textPrefab[data.Tile[i].TileType - 1], _textHolder);
@@ -59,31 +59,31 @@ namespace Athena.MiniGame.Fishdom2.GamePlay
             }
         }
 
-        public IEnumerator StartUpdateView(int newIndex, int oldValue, int newValue)
+        public IEnumerator StartUpdateView(int oldIndex, int newIndex, int oldValue, int newValue)
         {
-            CharacterMoveAnimation(newIndex);
+            CharacterMoveAnimation(oldIndex, newIndex);
             yield return new WaitForSeconds(0.5f);
-            UpdateView(newIndex, oldValue, newValue);
+            UpdateView(oldIndex, newIndex, oldValue, newValue);
         }
 
-        public void CharacterMoveAnimation(int newIndex)
+        public void CharacterMoveAnimation(int oldIndex, int newIndex)
         {
             Vector3 target = textObjects[newIndex].transform.position;
-            textObjects[_gameController.PreviousIndex].transform.DOMove(target, 0.5f).SetEase(Ease.OutQuad);
+            textObjects[oldIndex].transform.DOMove(target, 0.5f).SetEase(Ease.OutQuad);
         }
 
-        public void UpdateView(int newIndex, int oldValue,int newValue)
+        public void UpdateView(int oldIndex, int newIndex, int oldValue,int newValue)
         {
-            RemoveOldObject();
+            RemoveOldObject(oldIndex);
             UpdateNewObject(newIndex, oldValue, newValue);
         }
 
-        public void RemoveOldObject()
+        public void RemoveOldObject(int oldIndex)
         {
-            textObjects[_gameController.PreviousIndex].transform.GetChild(0).GetComponent<Text>().text = "";
-            textObjects[_gameController.PreviousIndex].transform.GetChild(1).gameObject.SetActive(false);
-            childObjects[_gameController.PreviousIndex].GetComponent<SpriteRenderer>().DOColor(lockedColor, 0.5f).SetEase(Ease.OutQuad);
-            childObjects[_gameController.PreviousIndex].GetComponent<TileStatus>().IsLock = true;
+            textObjects[oldIndex].transform.GetChild(0).GetComponent<Text>().text = "";
+            textObjects[oldIndex].transform.GetChild(1).gameObject.SetActive(false);
+            childObjects[oldIndex].GetComponent<SpriteRenderer>().DOColor(lockedColor, 0.5f).SetEase(Ease.OutQuad);
+            childObjects[oldIndex].GetComponent<TileStatus>().IsLock = true;
         }
 
         public void UpdateNewObject(int newIndex, int oldValue, int newValue)

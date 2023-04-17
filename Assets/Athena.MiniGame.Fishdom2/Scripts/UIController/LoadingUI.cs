@@ -4,10 +4,11 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using Athena.Common.UI;
+using Athena.MiniGame.Fishdom2.ZTask;
 
 namespace Athena.MiniGame.Fishdom2.UIController
 {
-    public class LoadingUI : MonoBehaviour
+    public class LoadingUI : Athena.Common.UI.UIController
     {
         [SerializeField] private TextMeshProUGUI _loadingText;
         [SerializeField] private Slider _progressBar;
