@@ -60,7 +60,7 @@ namespace Athena.MiniGame.Fishdom2.GamePlay
                 if(IsWin())
                 {
                     if (_gameStateListener != null) _gameStateListener.OnGameComplete();
-                }
+                }             
             }
         }
         public void SetGameStateListener(IGameStateListener listener)
@@ -103,7 +103,6 @@ namespace Athena.MiniGame.Fishdom2.GamePlay
             }
             return false;
         }
-
         public bool IsWin()
         {
             return CurrentIndex == _level.TotalTile - 1;
@@ -118,6 +117,10 @@ namespace Athena.MiniGame.Fishdom2.GamePlay
         public void OnTileStateChange()
         {
             _gameView.UpdateTileState(_level);
+        }
+        public void EnebleInput()
+        {
+            _input.InputEneble = true;
         }
 
         public int CurrentState

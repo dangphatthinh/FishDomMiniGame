@@ -131,7 +131,7 @@
  "value" : 10,
  "calculation" : "x",
  "state" : 3,
- "statechangeflag" : 0
+ "statechangeflag" : 2
  },
  {
  "xPos" : 2.5,

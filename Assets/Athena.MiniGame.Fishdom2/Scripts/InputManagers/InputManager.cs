@@ -9,10 +9,20 @@ namespace Athena.MiniGame.Fishdom2.InputManagers
     public class InputManager : MonoBehaviour
     {
         [SerializeField] private GameController _gameController;
+        private bool _inputEneble = true;
+
+        public bool InputEneble
+        {
+            get => _inputEneble;
+            set => _inputEneble = value;
+        }
 
         public void Execute()
         {
-            UpdateInput();
+            if(_inputEneble)
+            {
+                UpdateInput();
+            }           
         }
         public void UpdateInput()
         {
@@ -26,6 +36,7 @@ namespace Athena.MiniGame.Fishdom2.InputManagers
                     if (hitInfo.collider != null && hitInfo.collider.GetComponent<BoxCollider>() != null)
                     {
                          _gameController.ProcessingInput(hitInfo.collider.gameObject.GetComponent<TileStatus>().Index);
+                        _inputEneble = false;
                     }
                 }
             }

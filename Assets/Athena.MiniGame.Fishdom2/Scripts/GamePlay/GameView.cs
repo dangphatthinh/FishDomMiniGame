@@ -19,6 +19,7 @@ namespace Athena.MiniGame.Fishdom2.GamePlay
         private Color lockedColor = new Color32(84, 143, 147, 200);
         private Color unlockedColor = new Color32(158, 236, 241, 200);
         [SerializeField] private Sprite mainCharacter;
+        
 
         public void Initialize(LevelData data) 
         {
@@ -76,6 +77,7 @@ namespace Athena.MiniGame.Fishdom2.GamePlay
         {
             RemoveOldObject(oldIndex);
             UpdateNewObject(newIndex, oldValue, newValue);
+            _gameController.EnebleInput();
         }
 
         public void RemoveOldObject(int oldIndex)
