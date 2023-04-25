@@ -40,7 +40,7 @@ namespace Athena.MiniGame.Fishdom2.AppFlow
         {
             yield return new WaitForSeconds(1.2f);
             _winUI = UIManager.Instance.ShowUIOnTop<WinUI>(C.Layer.WinUI, 1);
-            _winUI.SetUp();
+            _winUI.SetUp(_gameController.GetGameData());
             _winUI.OnNewLevel += onNewLevel;
         }
         IEnumerator OpenLosePopup()

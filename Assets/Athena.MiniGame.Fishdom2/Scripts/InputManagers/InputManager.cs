@@ -19,10 +19,10 @@ namespace Athena.MiniGame.Fishdom2.InputManagers
 
         public void Execute()
         {
-            if(_inputEneble)
+            if(InputEneble)
             {
                 UpdateInput();
-            }           
+            }                    
         }
         public void UpdateInput()
         {
@@ -36,7 +36,6 @@ namespace Athena.MiniGame.Fishdom2.InputManagers
                     if (hitInfo.collider != null && hitInfo.collider.GetComponent<BoxCollider>() != null)
                     {
                          _gameController.ProcessingInput(hitInfo.collider.gameObject.GetComponent<TileStatus>().Index);
-                        _inputEneble = false;
                     }
                 }
             }

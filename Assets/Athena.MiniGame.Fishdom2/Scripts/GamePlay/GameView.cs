@@ -4,6 +4,7 @@ using UnityEngine;
 using Athena.MiniGame.Fishdom2.Data;
 using UnityEngine.UI;
 using DG.Tweening;
+using TMPro;
 
 namespace Athena.MiniGame.Fishdom2.GamePlay
 {
@@ -12,15 +13,14 @@ namespace Athena.MiniGame.Fishdom2.GamePlay
         [SerializeField] private GameController _gameController;
         [SerializeField] private Transform _objectHolder;
         [SerializeField] private Transform _textHolder;
+        [SerializeField] private Sprite mainCharacter;
 
         public List<GameObject> childObjects = new List<GameObject>();
         public List<GameObject> textObjects = new List<GameObject>();
 
         private Color lockedColor = new Color32(84, 143, 147, 200);
         private Color unlockedColor = new Color32(158, 236, 241, 200);
-        [SerializeField] private Sprite mainCharacter;
-        
-
+                
         public void Initialize(LevelData data) 
         {
             CreatTileMap(data);
@@ -53,7 +53,7 @@ namespace Athena.MiniGame.Fishdom2.GamePlay
                 GameObject numberInstance = Instantiate(numberPrefab[data.Tile[i].TileType - 1], _textHolder);
                 Vector3 pos = new Vector3(data.Tile[i].XPos, data.Tile[i].YPos, 0);
                 numberInstance.transform.position = pos;
-                Text newText = numberInstance.transform.GetChild(0).GetComponent<Text>();
+                TextMeshProUGUI newText = numberInstance.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
                 numberInstance.GetComponent<RectTransform>().localScale = Vector3.one*3;
                 newText.text = (data.Tile[i].calculation == "+"?null: data.Tile[i].calculation.ToString()) + data.Tile[i].value.ToString();
                 textObjects.Add(numberInstance);
@@ -77,12 +77,11 @@ namespace Athena.MiniGame.Fishdom2.GamePlay
         {
             RemoveOldObject(oldIndex);
             UpdateNewObject(newIndex, oldValue, newValue);
-            _gameController.EnebleInput();
         }
 
         public void RemoveOldObject(int oldIndex)
         {
-            textObjects[oldIndex].transform.GetChild(0).GetComponent<Text>().text = "";
+            textObjects[oldIndex].transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "";
             textObjects[oldIndex].transform.GetChild(1).gameObject.SetActive(false);
             childObjects[oldIndex].GetComponent<SpriteRenderer>().DOColor(lockedColor, 0.5f).SetEase(Ease.OutQuad);
             childObjects[oldIndex].GetComponent<TileStatus>().IsLock = true;
@@ -92,10 +91,14 @@ namespace Athena.MiniGame.Fishdom2.GamePlay
         {
             UpdateMainCharacter(newIndex);
             childObjects[newIndex].GetComponent<SpriteRenderer>().color = Color.green;
+            DOTween.To(() => new Vector3(0.8f, 0.8f, 1f),
+                   scale => textObjects[newIndex].transform.GetChild(0).GetComponent<RectTransform>().gameObject.transform.localScale = scale,
+                   new Vector3(1.2f, 1.2f, 1f),
+                   0.25f).SetLoops(2);
             DOTween.To(() => oldValue, x => {
                 oldValue = x;
-                textObjects[newIndex].transform.GetChild(0).GetComponent<Text>().text = oldValue.ToString();
-            }, newValue, 0.5f);
+                textObjects[newIndex].transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = oldValue.ToString();
+            }, newValue, 0.5f);           
         }
         public void UpdateMainCharacter(int newIndex)
         {

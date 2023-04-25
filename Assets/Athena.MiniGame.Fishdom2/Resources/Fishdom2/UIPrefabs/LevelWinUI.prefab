@@ -16682,6 +16682,8 @@ GameObject:
   - component: {fileID: 3201132615506465635}
   - component: {fileID: 3201132615506465645}
   - component: {fileID: 3201132615506465644}
+  - component: {fileID: 7874331458864026155}
+  - component: {fileID: 3432714027004429456}
   m_Layer: 5
   m_Name: Text_Score_Value
   m_TagString: Untagged
@@ -16805,6 +16807,33 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &7874331458864026155
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3201132615506465634}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba5d16f77a845423a9d7c91bf5053381, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Label: {fileID: 3432714027004429456}
+  MaxDurationPerAnim: 2
+--- !u!114 &3432714027004429456
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3201132615506465634}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4cf18731434254535a4b3c97878fc6fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _text: {fileID: 3201132615506465644}
 --- !u!1 &3201132615579812600
 GameObject:
   m_ObjectHideFlags: 0
@@ -32204,6 +32233,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   newBtn: {fileID: 4022902164503227129}
+  scoreText: {fileID: 7874331458864026155}
   stars: {fileID: 6733453898922922620}
 --- !u!1 &3201132615869208764
 GameObject:

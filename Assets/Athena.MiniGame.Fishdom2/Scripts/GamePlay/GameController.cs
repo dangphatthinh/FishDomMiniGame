@@ -34,33 +34,35 @@ namespace Athena.MiniGame.Fishdom2.GamePlay
         public void Update()
         {
             _input.Execute();
+            if(_input.InputEneble)
+            {
+                if (IsTriggerNextStep())
+                {
+                    ProcessingInput(CurrentIndex + 1);
+                }
+            }
         }
 
         public void ProcessingInput(int clickedIndex)
         {
+            StartCoroutine(BlockInput());
             bool isLock = _gameView.childObjects[clickedIndex].GetComponent<TileStatus>().IsLock;
             int newValue = _gameData.Data[clickedIndex];
             int currentValue = _gameData.Data[CurrentIndex];
             int oldIndex = CurrentIndex;
 
             if (clickedIndex < 0 || clickedIndex == CurrentIndex || isLock) return;
-
-            if(currentValue <= newValue)
+            if(currentValue > newValue)
             {
-                StartCoroutine(_gameView.StartUpdateView(oldIndex, clickedIndex, currentValue, 0));
-                if (_gameStateListener != null) _gameStateListener.OnGameComplete();
+                UpdateData(clickedIndex, currentValue);
+                int newValueUpdated = _gameData.Data[CurrentIndex];
+                UpdateView(clickedIndex, currentValue, newValueUpdated);
+                CheckWin();
             }
             else
-            {
-                UpdateData(clickedIndex,currentValue);
-                if(IsGameStateChange(clickedIndex))
-                {
-                    UpdateCamera();                    
-                }
-                if(IsWin())
-                {
-                    if (_gameStateListener != null) _gameStateListener.OnGameComplete();
-                }             
+            {               
+                StartCoroutine(_gameView.StartUpdateView(oldIndex, clickedIndex, currentValue, 0));
+                if (_gameStateListener != null) _gameStateListener.OnGameComplete();
             }
         }
         public void SetGameStateListener(IGameStateListener listener)
@@ -71,12 +73,21 @@ namespace Athena.MiniGame.Fishdom2.GamePlay
         {
             _cam.UpdateCameraState(CurrentState, _level);
         }
+        public void UpdateView(int clickedIndex, int currentValue, int newValue)
+        {
+            StartCoroutine(_gameView.StartUpdateView(PreviousIndex, CurrentIndex, currentValue, newValue));
+            if (IsGameStateChange(clickedIndex))
+            {
+                UpdateCamera();
+            }
+        }
 
         public void UpdateData(int clickedIndex, int currentValue)
         {
             PreviousIndex = CurrentIndex;
             CurrentIndex = clickedIndex;
             string calculation = _level.tile[CurrentIndex].calculation;
+
             switch (calculation)
             {
                 case "+":
@@ -90,9 +101,7 @@ namespace Athena.MiniGame.Fishdom2.GamePlay
                 default:
                     break;
             }
-            int newValue = _gameData.Data[CurrentIndex];
-
-            StartCoroutine(_gameView.StartUpdateView(PreviousIndex, CurrentIndex, currentValue, newValue));
+                     
         }
         public bool IsGameStateChange(int clickedIndex)
         {
@@ -103,17 +112,27 @@ namespace Athena.MiniGame.Fishdom2.GamePlay
             }
             return false;
         }
+        public void CheckWin()
+        {
+            if(IsWin())
+            {
+                _gameData.Score = _gameData.Data[CurrentIndex];
+                if (_gameStateListener != null) _gameStateListener.OnGameComplete();
+            }
+        }
         public bool IsWin()
         {
             return CurrentIndex == _level.TotalTile - 1;
         }
-
         public void SetUpCurrent()
         {
             _currentIndex = _level.FirstIndex;
             _currentState = 1; //First game state
         }
-
+        public GameData GetGameData()
+        {
+            return _gameData;
+        }
         public void OnTileStateChange()
         {
             _gameView.UpdateTileState(_level);
@@ -122,7 +141,16 @@ namespace Athena.MiniGame.Fishdom2.GamePlay
         {
             _input.InputEneble = true;
         }
-
+        public bool IsTriggerNextStep()
+        {
+            return _level.Tile[CurrentIndex].StateChangeFlag == 2;
+        }
+        IEnumerator BlockInput()
+        {
+            _input.InputEneble = false;
+            yield return new WaitForSeconds(1.2f);
+            _input.InputEneble = true;
+        }
         public int CurrentState
         {
             get => _currentState;
