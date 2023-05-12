@@ -31,12 +31,143 @@
   "y" : 12.4
   "z" : -10
   "size" : 4
- }]
- 
+ }],
+ "TextPosition" : [
+ {
+ "xTextPos" : 0,
+ "yTextPos" : -324
+ },
+ {
+ "xTextPos" : 450,
+ "yTextPos" : -275
+ },
+ {
+ "xTextPos" : -162,
+ "yTextPos" : -86.4
+ },
+ {
+ "xTextPos" : 450,
+ "yTextPos" : -40
+ },
+ {
+ "xTextPos" : -260,
+ "yTextPos" : 200
+ },
+ {
+ "xTextPos" : 85,
+ "yTextPos" : 200
+ },
+ {
+ "xTextPos" : 430,
+ "yTextPos" : 200
+ },
+ {
+ "xTextPos" : 130,
+ "yTextPos" : 440
+ },
+ {
+ "xTextPos" : -100,
+ "yTextPos" : 680
+ },
+ {
+ "xTextPos" : 460,
+ "yTextPos" : 680
+ },
+ {
+ "xTextPos" : -270,
+ "yTextPos" : 864
+ },
+ {
+ "xTextPos" : 370,
+ "yTextPos" : 910
+ },
+ {
+ "xTextPos" : -310,
+ "yTextPos" : 1150
+ },
+ {
+ "xTextPos" : 0,
+ "yTextPos" : 1101.6
+ },
+ {
+ "xTextPos" : 390,
+ "yTextPos" : 1150
+ },
+ {
+ "xTextPos" : 285,
+ "yTextPos" : 1580
+ }
+ ],
+ "CharacterPosition" : [
+ {
+  "xCharPos" : 0,
+ "yCharPos" : -3
+ },
+ {
+ "xCharPos" : 3.2,
+ "yCharPos" : -3
+ },
+ {
+ "xCharPos" : -1.5,
+ "yCharPos" : -0.8
+ },
+ {
+ "xCharPos" : 3.2,
+ "yCharPos" : -0.8
+ },
+ {
+ "xCharPos" : -3.2,
+ "yCharPos" : 1.4
+ },
+ {
+ "xCharPos" : 0,
+ "yCharPos" : 1.4
+ },
+ {
+ "xCharPos" : 3.2,
+ "yCharPos" : 1.4
+ },
+ {
+ "xCharPos" : 0,
+ "yCharPos" : 3.6
+ },
+ {
+ "xCharPos" : -2.6,
+ "yCharPos" : 5.8
+ },
+ {
+ "xCharPos" : 2.6,
+ "yCharPos" : 5.8
+ },
+ {
+ "xCharPos" : -2.5,
+ "yCharPos" : 8
+ },
+ {
+ "xCharPos" : 2.5,
+ "yCharPos" : 8
+ },
+ {
+ "xCharPos" : -3.2,
+ "yCharPos" : 10.2
+ }
+ {
+ "xCharPos" : 0,
+ "yCharPos" : 10.2
+ },
+ {
+ "xCharPos" : 3.2,
+ "yCharPos" : 10.2
+ },
+ {
+ "xCharPos" : 0,
+ "yCharPos" : 13.4
+ }
+ ],
  "ObjectTile" : [
  {
  "xPos" : 0,
- "yPos" : -3,
+ "yPos" : -324,
  "tileType" : 1,
  "value" : 2,
  "calculation" : "x",
@@ -44,8 +175,8 @@
  "statechangeflag" : 0
  },
  {
- "xPos" : 3.2,
- "yPos" : -3,
+ "xPos" : 345.6,
+ "yPos" : -324,
  "tileType" : 1,
  "value" : 5,
  "calculation" : "+",
@@ -53,8 +184,8 @@
  "statechangeflag" : 0
  },
  {
- "xPos" : -1.5,
- "yPos" : -0.8,
+ "xPos" : -162,
+ "yPos" : -86.4,
  "tileType" : 2,
  "value" : 3,
  "calculation" : "+",
@@ -62,8 +193,8 @@
  "statechangeflag" : 0
  },
  {
- "xPos" : 3.2,
- "yPos" : -0.8,
+ "xPos" : 345.6,
+ "yPos" : -86.4,
  "tileType" : 1,
  "value" : 9,
  "calculation" : "+",
@@ -71,8 +202,8 @@
  "statechangeflag" : 0
  },
  {
- "xPos" : -3.2,
- "yPos" : 1.4,
+ "xPos" : -345.6,
+ "yPos" : 151.2,
  "tileType" : 1,
  "value" : 66,
  "calculation" : "+",
@@ -81,7 +212,7 @@
  },
  {
  "xPos" : 0,
- "yPos" : 1.4,
+ "yPos" : 151.2,
  "tileType" : 1,
  "value" : 12,
  "calculation" : "+",
@@ -89,8 +220,8 @@
  "statechangeflag" : 1
  },
  {
- "xPos" : 3.2,
- "yPos" : 1.4,
+ "xPos" : 345.6,
+ "yPos" : 151.2,
  "tileType" : 1,
  "value" : 40,
  "calculation" : "+",
@@ -99,7 +230,7 @@
  },
  {
  "xPos" : 0,
- "yPos" : 3.6,
+ "yPos" : 388.8,
  "tileType" : 3,
  "value" : 30,
  "calculation" : "+",
@@ -107,8 +238,8 @@
  "statechangeflag" : 0
  },
  {
- "xPos" : -2.6,
- "yPos" : 5.8,
+ "xPos" : -280.8,
+ "yPos" : 626.4,
  "tileType" : 4,
  "value" : 58,
  "calculation" : "+",
@@ -116,8 +247,8 @@
  "statechangeflag" : 1
  },
  {
- "xPos" : 2.6,
- "yPos" : 5.8,
+ "xPos" : 280.8,
+ "yPos" : 626.4,
  "tileType" : 4,
  "value" : 85,
  "calculation" : "+",
@@ -125,8 +256,8 @@
  "statechangeflag" : 0
  },
  {
- "xPos" : -2.5,
- "yPos" : 8,
+ "xPos" : -270,
+ "yPos" : 864,
  "tileType" : 4,
  "value" : 10,
  "calculation" : "x",
@@ -134,8 +265,8 @@
  "statechangeflag" : 2
  },
  {
- "xPos" : 2.5,
- "yPos" : 8,
+ "xPos" : 270,
+ "yPos" : 864,
  "tileType" : 4,
  "value" : 1050,
  "calculation" : "+",
@@ -143,8 +274,8 @@
  "statechangeflag" : 1
  },
  {
- "xPos" : -3.2,
- "yPos" : 10.2,
+ "xPos" : -345.6,
+ "yPos" : 1101.6,
  "tileType" : 1,
  "value" : 3101,
  "calculation" : "+",
@@ -153,7 +284,7 @@
  },
  {
  "xPos" : 0,
- "yPos" : 10.2,
+ "yPos" : 1101.6,
  "tileType" : 1,
  "value" : 50,
  "calculation" : "x",
@@ -161,8 +292,8 @@
  "statechangeflag" : 0
  },
  {
- "xPos" : 3.2,
- "yPos" : 10.2,
+ "xPos" : 345.6,
+ "yPos" : 1101.6,
  "tileType" : 1,
  "value" : 3011,
  "calculation" : "+",
@@ -171,7 +302,7 @@
  },
  {
  "xPos" : 0,
- "yPos" : 13.4,
+ "yPos" : 1447.2,
  "tileType" : 6,
  "value" : 160000,
  "calculation" : "+",
@@ -179,5 +310,4 @@
  "statechangeflag" : 0
  }
  ]
- 
 }

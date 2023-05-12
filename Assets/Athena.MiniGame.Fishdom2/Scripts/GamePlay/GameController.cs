@@ -60,8 +60,8 @@ namespace Athena.MiniGame.Fishdom2.GamePlay
                 CheckWin();
             }
             else
-            {               
-                StartCoroutine(_gameView.StartUpdateView(oldIndex, clickedIndex, currentValue, 0));
+            {
+                StartCoroutine(_gameView.StartUpdateView(_level,oldIndex, clickedIndex, currentValue, 0));
                 if (_gameStateListener != null) _gameStateListener.OnGameComplete();
             }
         }
@@ -75,7 +75,7 @@ namespace Athena.MiniGame.Fishdom2.GamePlay
         }
         public void UpdateView(int clickedIndex, int currentValue, int newValue)
         {
-            StartCoroutine(_gameView.StartUpdateView(PreviousIndex, CurrentIndex, currentValue, newValue));
+            StartCoroutine(_gameView.StartUpdateView(_level,PreviousIndex, CurrentIndex, currentValue, newValue));
             if (IsGameStateChange(clickedIndex))
             {
                 UpdateCamera();

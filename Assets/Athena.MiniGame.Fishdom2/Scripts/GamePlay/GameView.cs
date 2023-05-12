@@ -13,96 +13,141 @@ namespace Athena.MiniGame.Fishdom2.GamePlay
         [SerializeField] private GameController _gameController;
         [SerializeField] private Transform _objectHolder;
         [SerializeField] private Transform _textHolder;
-        [SerializeField] private Sprite mainCharacter;
+        [SerializeField] private Transform _charHolder;
+        [SerializeField] private Transform _npcsHolder;
+        private GameObject character;
 
         public List<GameObject> childObjects = new List<GameObject>();
         public List<GameObject> textObjects = new List<GameObject>();
+        public List<GameObject> NPC = new List<GameObject>();
 
         private Color lockedColor = new Color32(84, 143, 147, 200);
         private Color unlockedColor = new Color32(158, 236, 241, 200);
                 
         public void Initialize(LevelData data) 
         {
-            CreatTileMap(data);
-            CreatNumberObject(data);
+            CreateTileMap(data);
+            CreateNumberObject(data);
+            CreateMainCharater(data);
+            CreateNPCs(data);
             _gameController.UpdateCamera();
             UpdateTileState(data);
-            UpdateMainCharacter(_gameController.CurrentIndex);
         }
 
-        public void CreatTileMap(LevelData data)
+        public void CreateTileMap(LevelData data)
         {
-            GameObject[] prefabs = Resources.LoadAll<GameObject>("Fishdom2/Prefabs/Tile");
+            GameObject[] prefabs = Resources.LoadAll<GameObject>("Fishdom2/Prefabs/Tiles");
             for (int i = 0; i < data.totalTile; i++)
             {
                 GameObject instance = Instantiate(prefabs[data.Tile[i].TileType - 1], _objectHolder);
-                Vector3 pos = new Vector3(data.Tile[i].XPos, data.Tile[i].YPos, 0);
-                instance.transform.position = pos;
+                Vector3 pos = new Vector3(data.Tile[i].XPos , data.Tile[i].YPos , 0);
+                instance.transform.position = Vector3.zero;
+                instance.GetComponent<RectTransform>().anchoredPosition = pos;
                 instance.name = "Tile" + i;
                 instance.AddComponent<TileStatus>().Index = i;
                 instance.GetComponent<TileStatus>().IsLock = true;
                 childObjects.Add(instance);
             }
         }
-
-        public void CreatNumberObject(LevelData data)
+        public void CreateNPCs(LevelData data)
         {
-            GameObject[] numberPrefab = Resources.LoadAll<GameObject>("Fishdom2/Prefabs/TextObject");
+            GameObject[] prefabs = Resources.LoadAll<GameObject>("Fishdom2/Prefabs/NPCs");
             for (int i = 0; i < data.totalTile; i++)
             {
-                GameObject numberInstance = Instantiate(numberPrefab[data.Tile[i].TileType - 1], _textHolder);
-                Vector3 pos = new Vector3(data.Tile[i].XPos, data.Tile[i].YPos, 0);
-                numberInstance.transform.position = pos;
-                TextMeshProUGUI newText = numberInstance.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
-                numberInstance.GetComponent<RectTransform>().localScale = Vector3.one*3;
+                if(i == _gameController.CurrentIndex)
+                {
+                    NPC.Add(null);
+                    continue;
+                }
+                else if(data.Tile[i].calculation == "x")
+                {
+                    GameObject instance = Instantiate(prefabs[0], _charHolder);
+                    Vector3 pos = new Vector3(data.CharPos[i].XCharPos, data.CharPos[i].YCharPos, 0);
+                    instance.transform.position = pos;
+                    instance.name = "NPC" + i;
+                    NPC.Add(instance);
+                }
+                else if(data.Tile[i].calculation == "+")
+                {
+                    GameObject instance = Instantiate(prefabs[(int)Random.Range(1, 4)], _npcsHolder);
+                    Vector3 pos = new Vector3(data.CharPos[i].XCharPos, data.CharPos[i].YCharPos, 0);
+                    instance.transform.position = pos;
+                    instance.name = "NPC" + i;
+                    NPC.Add(instance);
+                }                             
+            }
+        }
+
+        public void CreateNumberObject(LevelData data)
+        {
+            GameObject numberPrefab = Resources.Load<GameObject>("Fishdom2/Prefabs/TextObject/TextObject");
+            for (int i = 0; i < data.totalTile; i++)
+            {
+                GameObject numberInstance = Instantiate(numberPrefab, _textHolder);
+                Vector3 pos = new Vector3(data.TextPos[i].XTextPos , data.TextPos[i].YTextPos, 0);
+                numberInstance.GetComponent<RectTransform>().anchoredPosition = pos;
+                TextMeshProUGUI newText = numberInstance.transform.GetComponent<TextMeshProUGUI>();
+                numberInstance.GetComponent<RectTransform>().localScale = Vector3.one*2f;
                 newText.text = (data.Tile[i].calculation == "+"?null: data.Tile[i].calculation.ToString()) + data.Tile[i].value.ToString();
                 textObjects.Add(numberInstance);
             }
         }
-
-        public IEnumerator StartUpdateView(int oldIndex, int newIndex, int oldValue, int newValue)
+        public void CreateMainCharater(LevelData data)
         {
-            CharacterMoveAnimation(oldIndex, newIndex);
+            GameObject instance = Resources.Load<GameObject>("Fishdom2/Prefabs/MainCharacter");
+            character = Instantiate(instance, _charHolder);
+            Vector3 pos = new Vector3(data.CharPos[_gameController.CurrentIndex].XCharPos, data.CharPos[_gameController.CurrentIndex].YCharPos, 0);
+            character.transform.position = pos;
+            Vector3 textTarget = new Vector3(data.CharPos[_gameController.CurrentIndex].XCharPos - 0.8f, data.CharPos[_gameController.CurrentIndex].YCharPos + 0.6f, 0);
+            textObjects[_gameController.CurrentIndex].transform.position = textTarget;
+            textObjects[_gameController.CurrentIndex].GetComponent<TextMeshProUGUI>().color = Color.red;
+        }
+
+        public IEnumerator StartUpdateView(LevelData data,int oldIndex, int newIndex, int oldValue, int newValue)
+        {
+            CharacterMoveAnimation(data,oldIndex, newIndex);
             yield return new WaitForSeconds(0.5f);
-            UpdateView(oldIndex, newIndex, oldValue, newValue);
+            UpdateView(data, oldIndex, newIndex, oldValue, newValue);
         }
 
-        public void CharacterMoveAnimation(int oldIndex, int newIndex)
+        public void CharacterMoveAnimation(LevelData data,int oldIndex, int newIndex)
         {
-            Vector3 target = textObjects[newIndex].transform.position;
-            textObjects[oldIndex].transform.DOMove(target, 0.5f).SetEase(Ease.OutQuad);
+            Vector3 charTarget = new Vector3(data.CharPos[newIndex].XCharPos, data.CharPos[newIndex].YCharPos, 0);
+            Vector3 textTarget = new Vector3(data.CharPos[newIndex].XCharPos -0.5f, data.CharPos[newIndex].YCharPos + 0.5f, 0);
+            textObjects[oldIndex].transform.DOMove(textTarget, 0.5f).SetEase(Ease.OutQuad);
+            Vector3 chartarget = new Vector3(charTarget.x, charTarget.y - 0.3f, charTarget.z); 
+            character.transform.DOMove(chartarget, 0.5f).SetEase(Ease.OutQuad);
         }
 
-        public void UpdateView(int oldIndex, int newIndex, int oldValue,int newValue)
+        public void UpdateView(LevelData data,int oldIndex, int newIndex, int oldValue,int newValue)
         {
             RemoveOldObject(oldIndex);
-            UpdateNewObject(newIndex, oldValue, newValue);
+            UpdateNewObject(data, newIndex, oldValue, newValue);
         }
 
         public void RemoveOldObject(int oldIndex)
         {
-            textObjects[oldIndex].transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "";
-            textObjects[oldIndex].transform.GetChild(1).gameObject.SetActive(false);
-            childObjects[oldIndex].GetComponent<SpriteRenderer>().DOColor(lockedColor, 0.5f).SetEase(Ease.OutQuad);
+            textObjects[oldIndex].transform.GetComponent<TextMeshProUGUI>().text = "";
+            childObjects[oldIndex].GetComponent<Image>().DOColor(lockedColor, 0.5f).SetEase(Ease.OutQuad);
             childObjects[oldIndex].GetComponent<TileStatus>().IsLock = true;
         }
 
-        public void UpdateNewObject(int newIndex, int oldValue, int newValue)
+        public void UpdateNewObject(LevelData data, int newIndex, int oldValue, int newValue)
         {
-            UpdateMainCharacter(newIndex);
-            childObjects[newIndex].GetComponent<SpriteRenderer>().color = Color.green;
-            DOTween.To(() => new Vector3(0.8f, 0.8f, 1f),
-                   scale => textObjects[newIndex].transform.GetChild(0).GetComponent<RectTransform>().gameObject.transform.localScale = scale,
-                   new Vector3(1.2f, 1.2f, 1f),
-                   0.25f).SetLoops(2);
+            childObjects[newIndex].GetComponent<Image>().color = Color.green;
+            NPC[newIndex].gameObject.SetActive(false);
+            /*DOTween.To(() => new Vector3(2.8f, 2.8f, 1f),
+                   scale => textObjects[newIndex].transform.GetComponent<RectTransform>().gameObject.transform.localScale = scale,
+                   new Vector3(3.1f, 3.1f, 1f),
+                   0.25f).SetLoops(2);*/
+            Vector3 textTarget = new Vector3(data.CharPos[newIndex].XCharPos - 0.5f, data.CharPos[newIndex].YCharPos + 0.5f, 0);
+            textObjects[newIndex].transform.position = textTarget;
+            textObjects[newIndex].GetComponent<TextMeshProUGUI>().color = Color.red;
+
             DOTween.To(() => oldValue, x => {
                 oldValue = x;
-                textObjects[newIndex].transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = oldValue.ToString();
-            }, newValue, 0.5f);           
-        }
-        public void UpdateMainCharacter(int newIndex)
-        {
-            textObjects[newIndex].transform.GetChild(1).GetComponent<Image>().sprite = mainCharacter;
+                textObjects[newIndex].transform.GetComponent<TextMeshProUGUI>().text = oldValue.ToString();
+            }, newValue, 0.5f);  
         }
 
         public void UpdateTileState(LevelData data)
@@ -113,12 +158,12 @@ namespace Athena.MiniGame.Fishdom2.GamePlay
                 {
                     if(i == _gameController.CurrentIndex)
                     {
-                        childObjects[_gameController.CurrentIndex].GetComponent<SpriteRenderer>().color = Color.green;
+                        childObjects[_gameController.CurrentIndex].GetComponent<Image>().color = Color.green;
                     }
                     else
                     {
                         childObjects[i].GetComponent<TileStatus>().IsLock = false;
-                        childObjects[i].GetComponent<SpriteRenderer>().DOColor(unlockedColor, 0.5f).SetEase(Ease.OutQuad);
+                        childObjects[i].GetComponent<Image>().DOColor(unlockedColor, 0.5f).SetEase(Ease.OutQuad);
                     }
                 }
             }         
